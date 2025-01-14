@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عرض النتائج</title>
+</head>
+<body>
+  <h1>نتائج الطالب</h1>
+  <div id="results"></div>
+
+  <script>
+    // Retrieve student data from localStorage
+    const studentData = JSON.parse(localStorage.getItem('studentData'));
+
+    if (studentData) {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = `
+        <p><strong>رقم الجلوس:</strong> ${studentData['رقم الجلوس']}</p>
+        <p><strong>الرقم القومي:</strong> ${studentData['الرقم القومي']}</p>
+        <h2>الدرجات:</h2>
+        <ul>
+          ${Object.entries(studentData['الدرجات'])
+            .map(([subject, grade]) => `<li>${subject}: ${grade}</li>`)
+            .join('')}
+        </ul>
+      `;
+    } else {
+      alert('لا توجد بيانات لعرضها.');
+      window.location.href = 'index.html'; // Redirect back to the main page
+    }
+  </script>
+</body>
+</html>
