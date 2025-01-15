@@ -11,6 +11,18 @@ document.getElementById('studentForm').addEventListener('submit', function (e) {
     return;
   }
 
+  function enforceEnglishNumerals(input) {
+  return input.replace(/[٠-٩]/g, ''); // Remove Arabic numerals
+  }
+
+  document.getElementById('set_number').addEventListener('input', function (e) {
+    this.value = enforceEnglishNumerals(this.value);
+  });
+  
+  document.getElementById('national_number').addEventListener('input', function (e) {
+    this.value = enforceEnglishNumerals(this.value);
+  });
+
   // Create the key
   const key = `${setNumber}_${nationalNumber}`;
   console.log('Key:', key);
