@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نتائج الطالب الثانوي</title>
+  <title>نتائج الطالب المرحلة الثانوية</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>نتائج الطالب الثانوي</h1>
+    <h1>نتائج الطالب المرحلة الثانوية</h1>
     <div id="results" class="results-container"></div>
     <div class="back-button">
       <a href="index.html">العودة إلى الصفحة الرئيسية</a>
@@ -24,7 +24,7 @@
       resultsDiv.innerHTML = `
         <div class="student-info">
           <p><strong>اسم الطالب:</strong> ${studentData['student_name']}</p>
-          <p><strong>المدرسة:</strong> ${studentData['institute'] || 'غير متاح'}</p>
+          <p><strong>معهد فتيات طلخا الثانوي</strong></p>
           <p><strong>الصف:</strong> ${studentData['class']}</p>
           <p><strong>القسم:</strong> ${studentData['dep']}</p>
         </div>
@@ -34,7 +34,7 @@
             <tr>
               <th>المادة</th>
               <th>الدرجة</th>
-              <th>من</th>
+              <th>النهاية العظمي</th>
             </tr>
           </thead>
           <tbody>
@@ -76,7 +76,7 @@
         "sicology": { name: "علم النفس", max: 20 },
         "arood": { name: "العروض", max: 10 },
         "phylosofy": { name: "الفلسفة", max: 20 },
-        "math_total": { name: "الرياضيات (الإجمالي)", max: isFirstGrade ? 40 : 60 }, // Adjust based on grade
+        "math_total": { name: "الرياضيات (الإجمالي)", max: isFirstGrade ? 20 : 30 }, // Adjust based on grade
         "physics": { name: "العلوم المتكاملة / الفيزياء", max: isFirstGrade ? 60 : 20 }, // Adjust based on grade
         "chemistry": { name: "الكيمياء", max: 50 },
         "biology": { name: "الأحياء", max: 50 },
