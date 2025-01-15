@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتائج الطالب الثانوي</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>نتائج الطالب الثانوي</h1>
+    <div id="results" class="results-container"></div>
+    <div class="back-button">
+      <a href="index.html">العودة إلى الصفحة الرئيسية</a>
+    </div>
+  </div>
+
+  <script>
+    // Retrieve student data from localStorage
+    const studentData = JSON.parse(localStorage.getItem('studentData'));
+
+    if (studentData) {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = `
+        <div class="student-info">
+          <p><strong>اسم الطالب:</strong> ${studentData['student_name']}</p>
+          <p><strong>المدرسة:</strong> ${studentData['institute'] || 'غير متاح'}</p>
+          <p><strong>الصف:</strong> ${studentData['class']}</p>
+          <p><strong>القسم:</strong> ${studentData['dep']}</p>
+        </div>
+        <h2>الدرجات:</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>المادة</th>
+              <th>الدرجة</th>
+              <th>من</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${generateSubjectRows(studentData)}
+          </tbody>
+        </table>
+        <div class="total-result">
+          <p><strong>النتيجة النهائية:</strong> ${studentData['tkhofat'] || 'غير متاح'}</p>
+        </div>
+      `;
+    } else {
+      alert('لا توجد بيانات لعرضها.');
+      window.location.href = 'index.html'; // Redirect back to the main page
+    }
+
+    // Function to generate subject rows dynamically
+    function generateSubjectRows(studentData) {
+      const isFirstGrade = studentData['class'] === 'الأول'; // Check if the student is in the first grade
+
+      const subjects = {
+        "feqh": { name: "الفقه", max: 20 },
+        "tafseer": { name: "التفسير", max: 20 },
+        "hadeth": { name: "الحديث", max: 20 },
+        "quraan_total": { name: "مجموع القرآن", max: 20 },
+        "tawheed": { name: "التوحيد", max: 20 },
+        "manteq": { name: "المنطق", max: 20 },
+        "nahow": { name: "النحو", max: 20 },
+        "sarf": { name: "الصرف", max: 20 },
+        "balagha": { name: "البلاغة", max: 20 },
+        "insha": { name: "الإنشاء", max: 20 },
+        "nosos": { name: "النصوص", max: 20 },
+        "english": { name: "اللغة الإنجليزية", max: 20 },
+        "frensh": { name: "اللغة الفرنسية", max: 20 },
+        "history": { name: "التاريخ", max: 20 },
+        "geographic": { name: "الجغرافيا", max: 20 },
+        "arts": { name: "التربية الفنية", max: 10 },
+        "hadeth_r": { name: "الحديث (شفوي)", max: 10 },
+        "thaqafa": { name: "الثقافة الاسلامية", max: 10 },
+        "sicology": { name: "علم النفس", max: 20 },
+        "arood": { name: "العروض", max: 10 },
+        "phylosofy": { name: "الفلسفة", max: 20 },
+        "math_total": { name: "الرياضيات (الإجمالي)", max: isFirstGrade ? 40 : 60 }, // Adjust based on grade
+        "physics": { name: "العلوم المتكاملة / الفيزياء", max: isFirstGrade ? 60 : 20 }, // Adjust based on grade
+        "chemistry": { name: "الكيمياء", max: 50 },
+        "biology": { name: "الأحياء", max: 50 },
+      };
+
+      let rows = '';
+      for (const [key, subject] of Object.entries(subjects)) {
+        if (studentData[key] !== null && studentData[key] !== undefined && studentData[key] !== "") {
+          rows += `
+            <tr>
+              <td>${subject.name}</td>
+              <td>${studentData[key]}</td>
+              <td>${subject.max}</td>
+            </tr>
+          `;
+        }
+      }
+      return rows;
+    }
+  </script>
+</body>
+</html>
