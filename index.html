@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>نتائج الطلاب</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
 </head>
 <body>
-  <h1>نتائج الطلاب</h1>
-  <form id="studentForm">
-    <label for="set_number">رقم الجلوس:</label>
-    <input type="text" id="set_number" required> <!-- Ensure this ID matches -->
-    <br>
-    <label for="national_number">الرقم القومي:</label>
-    <input type="text" id="national_number" required> <!-- Ensure this ID matches -->
-    <br>
-    <button type="submit">عرض النتائج</button>
-  </form>
+  <div class="container">
+    <h1>نتائج الطلاب</h1>
+    <form id="studentForm" class="form">
+      <label for="set_number">رقم الجلوس:</label>
+      <input type="text" id="set_number" required>
+      <br>
+      <label for="national_number">الرقم القومي:</label>
+      <input type="text" id="national_number" required>
+      <br>
+      <button type="submit">عرض النتائج</button>
+    </form>
+  </div>
 
   <script src="script.js"></script>
 </body>
