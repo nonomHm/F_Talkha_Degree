@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>عرض النتائج</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to the same CSS file -->
 </head>
 <body>
-  <h1>نتائج الطالب</h1>
-  <div id="results"></div>
+  <div class="container">
+    <h1>نتائج الطالب</h1>
+    <div id="results" class="results-container"></div>
+  </div>
 
   <script>
     // Retrieve student data from localStorage
@@ -16,25 +19,36 @@
     if (studentData) {
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = `
-        <p><strong>اسم الطالب:</strong> ${studentData['student_name']}</p>
-        <p><strong>المدرسة:</strong> ${studentData['institute']}</p>
-        <p><strong>الصف:</strong> ${studentData['class']}</p>
+        <div class="student-info">
+          <p><strong>اسم الطالب:</strong> ${studentData['student_name']}</p>
+          <p><strong>المدرسة:</strong> ${studentData['institute']}</p>
+          <p><strong>الصف:</strong> ${studentData['class']}</p>
+        </div>
         <h2>الدرجات:</h2>
-        <ul>
-          <li> مجموع القرآن: ${studentData['quraan_total']}</li>
-          <li>الفقه: ${studentData['feqh']}</li>
-          <li>التفسير: ${studentData['tafseer']}</li>
-          <li>التوحيد: ${studentData['tawheed']}</li>
-          <li>مجموع أصول الدين: ${studentData['osol']}</li>
-          <li>مجموع اللغة العربية: ${studentData['arabic']}</li>
-          <li>اللغة الإنجليزية: ${studentData['english']}</li>
-          <li>الدراسات الاجتماعية: ${studentData['social']}</li>
-          <li>مجموع الرياضيات: ${studentData['math']}</li>
-          <li>العلوم: ${studentData['science']}</li>
-          <li>التربية الفنية: ${studentData['arts']}</li>
-          <li>الحاسب الآلي: ${studentData['computer_total']}</li>
-        </ul>
-        <p><strong>النتيجة:</strong> ${studentData['result']}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>المادة</th>
+              <th>الدرجة</th>
+              <th>من</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>مجموع القرآن</td><td>${studentData['quraan_total']}</td><td>30</td></tr>
+            <tr><td>الفقه</td><td>${studentData['feqh']}</td><td>25</td></tr>
+            <tr><td>مجموع أصول الدين</td><td>${studentData['osol']}</td><td>50</td></tr>
+            <tr><td>مجموع اللغة العربية</td><td>${studentData['arabic']}</td><td>50</td></tr>
+            <tr><td>اللغة الإنجليزية</td><td>${studentData['english']}</td><td>20</td></tr>
+            <tr><td>الدراسات الاجتماعية</td><td>${studentData['social']}</td><td>20</td></tr>
+            <tr><td>مجموع الرياضيات</td><td>${studentData['math']}</td><td>30</td></tr>
+            <tr><td>العلوم</td><td>${studentData['science']}</td><td>20</td></tr>
+            <tr><td>الفنون</td><td>${studentData['arts']}</td><td>10</td></tr>
+            <tr><td>الحاسب الآلي</td><td>${studentData['computer_total']}</td><td>20</td></tr>
+          </tbody>
+        </table>
+        <div class="total-result">
+          <p><strong>النتيجة النهائية:</strong> ${studentData['result']}</p>
+        </div>
       `;
     } else {
       alert('لا توجد بيانات لعرضها.');
