@@ -16,14 +16,25 @@
     if (studentData) {
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = `
-        <p><strong>رقم الجلوس:</strong> ${studentData['رقم الجلوس']}</p>
-        <p><strong>الرقم القومي:</strong> ${studentData['الرقم القومي']}</p>
+        <p><strong>اسم الطالب:</strong> ${studentData['student_name']}</p>
+        <p><strong>المدرسة:</strong> ${studentData['institute']}</p>
+        <p><strong>الصف:</strong> ${studentData['class']}</p>
         <h2>الدرجات:</h2>
         <ul>
-          ${Object.entries(studentData['الدرجات'])
-            .map(([subject, grade]) => `<li>${subject}: ${grade}</li>`)
-            .join('')}
+          <li> مجموع القرآن: ${studentData['quraan_total']}</li>
+          <li>الفقه: ${studentData['feqh']}</li>
+          <li>التفسير: ${studentData['tafseer']}</li>
+          <li>التوحيد: ${studentData['tawheed']}</li>
+          <li>مجموع أصول الدين: ${studentData['osol']}</li>
+          <li>مجموع اللغة العربية: ${studentData['arabic']}</li>
+          <li>اللغة الإنجليزية: ${studentData['english']}</li>
+          <li>الدراسات الاجتماعية: ${studentData['social']}</li>
+          <li>مجموع الرياضيات: ${studentData['math']}</li>
+          <li>العلوم: ${studentData['science']}</li>
+          <li>التربية الفنية: ${studentData['arts']}</li>
+          <li>الحاسب الآلي: ${studentData['computer_total']}</li>
         </ul>
+        <p><strong>النتيجة:</strong> ${studentData['result']}</p>
       `;
     } else {
       alert('لا توجد بيانات لعرضها.');
