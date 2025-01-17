@@ -12,7 +12,7 @@ document.getElementById('studentForm').addEventListener('submit', function (e) {
   }
 
   function enforceEnglishNumerals(input) {
-  return input.replace(/[٠-٩]/g, ''); // Remove Arabic numerals
+    return input.replace(/[٠-٩]/g, ''); // Remove Arabic numerals
   }
 
   document.getElementById('set_number').addEventListener('input', function (e) {
