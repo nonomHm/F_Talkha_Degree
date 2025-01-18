@@ -1,27 +1,28 @@
+function convertArabicToEnglish(input) {
+const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+const englishNumerals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+return input
+  .split('')
+  .map(char => {
+    const index = arabicNumerals.indexOf(char);
+    return index !== -1 ? englishNumerals[index] : char;
+  })
+  .join('');
+}
+
 document.getElementById('studentForm').addEventListener('submit', function (e) {
   e.preventDefault(); // Prevent form submission
 
   // Get input values
   const level = document.getElementById('level').value;
-  const setNumber = document.getElementById('set_number').value;
-  const nationalNumber = document.getElementById('national_number').value;
+  const setNumber = convertArabicToEnglish(document.getElementById('set_number').value);
+  const nationalNumber = convertArabicToEnglish(document.getElementById('national_number').value);
 
   if (!level) {
     alert('الرجاء اختيار المرحلة.');
     return;
   }
-
-  function enforceEnglishNumerals(input) {
-    return input.replace(/[٠-٩]/g, ''); // Remove Arabic numerals
-  }
-
-  document.getElementById('set_number').addEventListener('input', function (e) {
-    this.value = enforceEnglishNumerals(this.value);
-  });
-  
-  document.getElementById('national_number').addEventListener('input', function (e) {
-    this.value = enforceEnglishNumerals(this.value);
-  });
 
   // Create the key
   const key = `${setNumber}_${nationalNumber}`;
